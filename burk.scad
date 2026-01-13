@@ -1,8 +1,8 @@
 include <BOSL2/std.scad>
 include <BOSL2/threading.scad>
 
-$fa = $preview ? 10 : 1;
-tex = texture("pyramids");
+
+tex = texture("diamonds");
 
 WALL_THICKNESS = 3;
 
@@ -38,6 +38,8 @@ container();
 left(75) rotate([180, 0, 0]) down(WALL_THICKNESS)
 lid();
 
+
+
 module container()	{
 	difference() {
 		union() {
@@ -45,7 +47,7 @@ module container()	{
 				linear_sweep(
 					[circle(OUTER_RADIUS)],
 					texture=tex, h=INNER_HEIGHT + WALL_THICKNESS - THREADED_SECTION,
-					tex_size=TEX_SIZE, style="convex",
+					tex_size=TEX_SIZE, style="concave",
 					tex_depth=TEX_DEPTH
 
 					);
@@ -109,12 +111,16 @@ module lid() {
 					orient=UP,
 					ang=CHAMFER_ANGLE
 					);
+
+				translate([0, 0, -0.30]) linear_extrude(0.41) scale(0.017) import(file = "svgviewer-png-output.svg", center = true, dpi = 96, $fn=100);
 			}
 
 			cylinder(h=BOTTOM_CHAMFER/2, r2=INNER_RADIUS*3/4, r1=INNER_RADIUS+1.5);
 			up(BOTTOM_CHAMFER / 2) {
 				cylinder(h=BOTTOM_CHAMFER/2, r2=0, r1=INNER_RADIUS*3/4);
 			}
+
+
 		}
 
 		down(THREADED_SECTION) {
