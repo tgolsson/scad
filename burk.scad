@@ -1,7 +1,7 @@
 include <BOSL2/std.scad>
 include <BOSL2/threading.scad>
 
-
+$fa = $preview ? 10 : 1;
 tex = texture("diamonds");
 
 WALL_THICKNESS = 3;
@@ -24,7 +24,7 @@ BOTTOM_CHAMFER = 1.5;
 CHAMFER_ANGLE = 70;
 LEAD_LENGTH = 1.5;
 STARTS = 3;
-TEX_SIZE= [1.5, 1.5];
+TEX_SIZE= [2, 2];
 // projection(cut=true)
 //   rotate([90, 0,0])
 //     container();
